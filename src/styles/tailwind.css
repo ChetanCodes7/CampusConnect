@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F8F9FC;
+  --foreground: #0F1729;
+  --primary: #1B3A6B;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EEF2F9;
+  --secondary-foreground: #1B3A6B;
+  --accent: #F5A623;
+  --accent-foreground: #1B3A6B;
+  --muted: #EEF2F9;
+  --muted-foreground: #64748B;
+  --card: #FFFFFF;
+  --card-foreground: #0F1729;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #1B3A6B;
+  --radius: 0.625rem;
+  --success: #10B981;
+  --success-foreground: #FFFFFF;
+  --warning: #F59E0B;
+  --warning-foreground: #FFFFFF;
+  --danger: #EF4444;
+  --danger-foreground: #FFFFFF;
+  --info: #3B82F6;
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 68px;
+  --font-sans: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  .font-tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  .sidebar-transition {
+    transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .fade-in {
+    animation: fadeIn 200ms ease-in-out;
+  }
+  .slide-up {
+    animation: slideUp 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .scale-in {
+    animation: scaleIn 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .pulse-highlight {
+    animation: pulseHighlight 600ms ease-in-out;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    border-radius: 2px;
+  }
+  .gradient-primary {
+    background: linear-gradient(135deg, #1B3A6B 0%, #2D5AA0 100%);
+  }
+  .gradient-accent {
+    background: linear-gradient(135deg, #F5A623 0%, #FFD166 100%);
+  }
+  .card-hover {
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .card-hover:hover {
+    box-shadow: 0 8px 25px -5px rgba(27, 58, 107, 0.15), 0 4px 10px -3px rgba(27, 58, 107, 0.1);
+    transform: translateY(-1px);
+  }
+  .nav-active {
+    background-color: rgba(27, 58, 107, 0.08);
+    color: var(--primary);
+  }
+  .attendance-warning {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    border-left: 4px solid var(--warning);
+  }
+  .attendance-danger {
+    background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+    border-left: 4px solid var(--danger);
+  }
+  .attendance-good {
+    background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+    border-left: 4px solid var(--success);
+  }
+}
+
+@layer components {
+.btn-primary  {
+    @apply bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-lg active:scale-95 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 focus:outline-none focus:ring-2;
+  }
+.btn-accent  {
+    @apply bg-accent text-accent-foreground font-semibold px-5 py-2.5 rounded-lg active:scale-95 transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply border border-border bg-card text-foreground font-medium px-5 py-2.5 rounded-lg
+           hover:bg-muted active:scale-95 transition-all duration-150;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-muted-foreground font-medium px-3 py-2 rounded-lg
+           hover:bg-muted hover:text-foreground active:scale-95 transition-all duration-150;
+  }
+.input-field  {
+    @apply w-full border border-input rounded-lg px-3.5 py-2.5 text-sm bg-card text-foreground focus:outline-none focus:ring-2 focus:border-primary transition-all duration-150;
+  }
+  .label-text {
+    @apply text-sm font-medium text-foreground mb-1.5 block;
+  }
+  .helper-text {
+    @apply text-xs text-muted-foreground mt-1;
+  }
+  .error-text {
+    @apply text-xs text-danger mt-1 flex items-center gap-1;
+  }
+  .card-base {
+    @apply bg-card rounded-xl border border-border shadow-sm;
+  }
+  .section-header {
+    @apply text-lg font-semibold text-foreground;
+  }
+  .metric-value {
+    @apply text-3xl font-bold text-foreground font-tabular;
+  }
+  .metric-label {
+    @apply text-xs font-medium text-muted-foreground uppercase tracking-wide;
+  }
+.badge-success  {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-success;
+  }
+.badge-warning  {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-warning;
+  }
+.badge-danger  {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-danger;
+  }
+.badge-info  {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium text-info;
+  }
+  .badge-neutral {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground;
+  }
+.sidebar-item  {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-150 cursor-pointer;
+  }
+.sidebar-item-active  {
+    @apply text-primary;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseHighlight {
+  0% { background-color: transparent; }
+  30% { background-color: rgba(245, 166, 35, 0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--muted) 25%,
+    rgba(238, 242, 249, 0.8) 50%,
+    var(--muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
